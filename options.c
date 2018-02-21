@@ -64,7 +64,7 @@ void options_init(int argc, char **argv)
 
 	tmp_opt->quality = 75;
 
-	const char *stropts = "bcd:e:hmq:swt:v+:";
+	const char *stropts = "bcd:e:hmq:swt:v+:B:";
 	struct option lopts[] = {
 		// actions
 		{"help", 0, 0, 'h'},                  // okay

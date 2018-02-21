@@ -8,7 +8,7 @@
 
 void help_show_version(void)
 {
-	printf(PACKAGE " version " VERSION "\n");
+	printf(PACKAGE " version " VERSION " (github @darddan)\n");
 	exit(EXIT_SUCCESS);
 }
 
