@@ -86,6 +86,12 @@ Image image_scale(Image image, int cwidth, int cheight, int twidth, int theight)
 	return imlib_create_cropped_scaled_image(0, 0, cwidth, cheight, twidth, theight);
 }
 
+Image image_blur(Image image, int radius) {
+    imlib_context_set_image(image);
+    imlib_image_blur(radius);
+    return imlib_context_get_image();
+}
+
 void image_set_quality(Image image, int quality)
 {
 	imlib_context_set_image(image);

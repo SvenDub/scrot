@@ -97,6 +97,11 @@ int main(int argc, char **argv)
 	if (image == NULL)
 		util_error("no image grabbed\n");
 
+    if (opt->blur)
+    {
+        image = image_blur(image, opt->blur);
+    }
+
 	image_set_quality(image, opt->quality);
 
 	time_t t;

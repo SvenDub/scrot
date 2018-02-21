@@ -80,6 +80,8 @@ void options_init(int argc, char **argv)
 		{"quality", 1, 0, 'q'},
 		{"exec", 1, 0, 'e'},
 		{"debug-level", 1, 0, '+'},
+        // effects
+        {"blur", 1, 0, 'B'},
 		{0, 0, 0, 0}
 	};
 	int optch = 0;
@@ -111,6 +113,9 @@ void options_init(int argc, char **argv)
 		case 'q':
 			tmp_opt->quality = atoi(optarg);
 			break;
+        case 'B':
+            tmp_opt->blur = atoi(optarg);
+            break;
 		case 's':
 			tmp_opt->select = true;
 			break;

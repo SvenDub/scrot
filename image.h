@@ -12,6 +12,7 @@ Image image_from_screen(void);
 Image image_from_area(struct Area *area);
 Image image_concat(Image images[], int count);
 Image image_scale(Image image, int cwidth, int cheight, int twidth, int theight);
+Image image_blur(Image image, int radius);
 void image_set_quality(Image image, int quality);
 int image_width(Image image);
 int image_height(Image image);

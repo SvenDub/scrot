@@ -13,6 +13,7 @@ struct Options {
 	int         thumb;        
 	int         thumb_width;  
 	int         thumb_height; 
+    int         blur;
 	bool        countdown;    
 	bool        select;       
 	bool        window;       
