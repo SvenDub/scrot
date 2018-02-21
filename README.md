@@ -1,4 +1,10 @@
-This is a fork of the [scrot](http://en.wikipedia.org/wiki/Scrot) utilitiy.
+This is a fork of [mahkoh/scrot](https://github.com/mahkoh/scrot) which is a fork of the [scrot](http://en.wikipedia.org/wiki/Scrot) utilitiy.
+
+I use the scrot command to create a screenshot for my i3lock. I used to blur the screenshot with ImageMagick afterwards but re-decoding, bluring and encoding it one more time took about 3 more second on my computer, which was pretty slow. That's why I added the blur option to the code.
+
+- `-blur radius` can be used to blur the screenshot. Radius is an integer.
+
+Below are the changes from [mahkoh](https://github.com/mahkoh):
 
 Most of the code has been rewritten and restructured for the sake of clarity.
 
