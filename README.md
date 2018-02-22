@@ -5,6 +5,8 @@ I use the scrot command to create a screenshot for my i3lock. I used to blur the
 - `-blur radius` | `-B` can be used to blur the screenshot. Radius is an integer.
 - `-icon filename` | `-i` can be used to add an icon over the screenshot. The icon must be smaller than the screenshot itself
 
+Install this by running `sudo make install` in the main directory
+
 Below are the changes from [mahkoh](https://github.com/mahkoh):
 
 Most of the code has been rewritten and restructured for the sake of clarity.
