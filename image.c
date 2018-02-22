@@ -79,6 +79,36 @@ bool image_save(Image image, char *filename)
 	return err != IMLIB_LOAD_ERROR_NONE;
 }
 
+Image image_add_icon(Image image, char *filename) {
+	Imlib_Load_Error error_ret;
+	Image icon = imlib_load_image_with_error_return(filename, &error_ret);
+	if (!icon) {
+		return 0;
+	}
+
+	imlib_context_set_image(icon);
+	int icon_w = imlib_image_get_width();
+	int icon_h = imlib_image_get_height();
+	imlib_context_set_image(image);
+	int img_w = imlib_image_get_width();
+	int img_h = imlib_image_get_height();
+
+	if (icon_w > img_w || icon_h > img_h) {
+		imlib_context_set_image(icon);
+		imlib_free_image();
+		return 0;
+	}
+
+	int dest_x = (img_w - icon_w)/2;
+	int dest_y = (img_h - icon_h)/2;
+	imlib_blend_image_onto_image(icon, 0,0,0,icon_w,icon_h,dest_x,dest_y,icon_w,icon_h);
+
+	imlib_context_set_image(icon);
+	imlib_free_image();
+
+	return image;
+}
+
 Image image_scale(Image image, int cwidth, int cheight, int twidth, int theight)
 {
 	imlib_context_set_image(image);

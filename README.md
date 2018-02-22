@@ -1,8 +1,9 @@
 This is a fork of [mahkoh/scrot](https://github.com/mahkoh/scrot) which is a fork of the [scrot](http://en.wikipedia.org/wiki/Scrot) utilitiy.
 
-I use the scrot command to create a screenshot for my i3lock. I used to blur the screenshot with ImageMagick afterwards but re-decoding, bluring and encoding it one more time took about 3 more second on my computer, which was pretty slow. That's why I added the blur option to the code.
+I use the scrot command to create a screenshot for my i3lock. I used to blur the screenshot with ImageMagick afterwards but re-decoding, bluring and encoding it one more time took about 2-5 more second on my computer, which was pretty slow. I also used to add an icon over it afterwards. That's why I added the blur and icon option to the code.
 
-- `-blur radius` can be used to blur the screenshot. Radius is an integer.
+- `-blur radius` | `-B` can be used to blur the screenshot. Radius is an integer.
+- `-icon filename` | `-i` can be used to add an icon over the screenshot. The icon must be smaller than the screenshot itself
 
 Below are the changes from [mahkoh](https://github.com/mahkoh):
 
@@ -20,3 +21,5 @@ Two changes have been made:
   achieve the same by pressing the mouse button, moving the mouse, and releasing
   the mouse button. This change has been made so that the `-s` flag is easier to
   use with touchpads.
+
+  [](https://www.shareicon.net/lock-93170)

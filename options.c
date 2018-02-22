@@ -64,7 +64,7 @@ void options_init(int argc, char **argv)
 
 	tmp_opt->quality = 75;
 
-	const char *stropts = "bcd:e:hmq:swt:v+:B:";
+	const char *stropts = "bcd:e:hmq:swt:v+:B:i:";
 	struct option lopts[] = {
 		// actions
 		{"help", 0, 0, 'h'},                  // okay
@@ -82,6 +82,7 @@ void options_init(int argc, char **argv)
 		{"debug-level", 1, 0, '+'},
         // effects
         {"blur", 1, 0, 'B'},
+		{"icon", 1, 0, 'i'},
 		{0, 0, 0, 0}
 	};
 	int optch = 0;
@@ -116,6 +117,9 @@ void options_init(int argc, char **argv)
         case 'B':
             tmp_opt->blur = atoi(optarg);
             break;
+		case 'i':
+			tmp_opt->icon = strcpy(malloc(strlen(optarg) + 1), optarg);
+			break;
 		case 's':
 			tmp_opt->select = true;
 			break;

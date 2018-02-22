@@ -7,6 +7,7 @@ struct Options {
 	const char *output_file; 
 	const char *thumb_file;  
 	const char *exec;        
+	char       *icon;
 	int         debug_level;  
 	int         delay;        
 	int         quality;      

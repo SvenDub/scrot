@@ -18,5 +18,6 @@ int image_width(Image image);
 int image_height(Image image);
 char *image_format(Image image);
 bool image_save(Image image, char *filename);
+Image image_add_icon(Image image, char *filename);
 
 #endif

@@ -102,6 +102,13 @@ int main(int argc, char **argv)
         image = image_blur(image, opt->blur);
     }
 
+	if (opt->icon)
+	{
+		image = image_add_icon(image, opt->icon);
+		if (!image)
+			util_error("Opening %s failed\n", opt->icon);
+	}
+
 	image_set_quality(image, opt->quality);
 
 	time_t t;
