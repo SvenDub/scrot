@@ -1,5 +1,10 @@
 #include <Imlib2.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <X11/Xlib.h>
+#include <X11/extensions/Xrandr.h>
 
 #include "image.h"
 #include "image_X11.h"
@@ -99,9 +104,43 @@ Image image_add_icon(Image image, char *filename) {
 		return 0;
 	}
 
-	int dest_x = (img_w - icon_w)/2;
-	int dest_y = (img_h - icon_h)/2;
-	imlib_blend_image_onto_image(icon, 0,0,0,icon_w,icon_h,dest_x,dest_y,icon_w,icon_h);
+    Display *dpy;
+    XRRScreenResources *screen;
+    XRROutputInfo *output_info;
+    XRRCrtcInfo *crtc_info;
+
+    dpy = XOpenDisplay(getenv("DISPLAY"));
+    screen = XRRGetScreenResources(dpy, DefaultRootWindow(dpy));
+
+    int i;
+    int noutput = screen->noutput;
+    for (i = 0; i < noutput; ++i) {
+        printf("Output %d/%d\n", i + 1, noutput);
+        output_info = XRRGetOutputInfo(dpy, screen, screen->outputs[i]);
+        printf("    Name: %s\n    Width: %lu mm\n    Height: %lu mm\n", output_info->name, output_info->mm_width, output_info->mm_height);
+
+        if (output_info->connection == RR_Connected) {
+            printf("    Connected: true\n");
+
+            if (output_info->mm_width > 0 && output_info->mm_height > 0) {
+                printf("    Active: true\n");
+                crtc_info = XRRGetCrtcInfo(dpy, screen, output_info->crtc);
+
+	            int dest_x = (crtc_info->width - icon_w)/2 + crtc_info->x;
+	            int dest_y = (crtc_info->height - icon_h)/2 + crtc_info->y;
+	            imlib_blend_image_onto_image(icon, 0,0,0,icon_w,icon_h,dest_x,dest_y,icon_w,icon_h);
+
+                XRRFreeCrtcInfo(crtc_info);
+            } else {
+                printf("    Active: false\n");
+            }
+        } else {
+            printf("    Connected: false\n");
+        }
+        XRRFreeOutputInfo(output_info);
+    }
+
+    XRRFreeScreenResources(screen);
 
 	imlib_context_set_image(icon);
 	imlib_free_image();

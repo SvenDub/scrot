@@ -1,6 +1,6 @@
 CFLAGS = -Wall -pedantic -Werror -std=c99
 
-LDFLAGS = -lX11 -lImlib2
+LDFLAGS = -lX11 -lImlib2 -lXrandr
 
 SRC = scrot.c help.c options.c display.c display_X11.c image.c image_X11.c utils.c
 HED = $(SRC:.c=.h)
